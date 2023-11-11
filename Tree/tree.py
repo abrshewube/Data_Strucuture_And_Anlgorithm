@@ -67,3 +67,37 @@ root = sorted_array_to_bst(sorted_array, 0, len(sorted_array) - 1)
 
 # Perform inorder traversal and print the values
 inorder(root)
+
+
+
+#3. From Traversals:
+#If you have the inorder and preorder (or postorder) 
+# traversals of a tree, you can construct the tree.
+
+class Node:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+        
+def build_tree(inorder, preorder):
+    if not inorder or not preorder:
+        return None
+    root_value=preorder.pop(0)
+    root=Node(root_value)
+    inorder_index=inorder.index(root_value)
+    
+    root.left=build_tree(inorder[:inorder_index],preorder)
+    root.right=build_tree(inorder[inorder_index+1:],preorder)
+    return root
+
+# Example usage:
+inorder_seq = [4, 2, 5, 1, 3]
+preorder_seq = [1, 2, 4, 5, 3]
+root = build_tree(inorder_seq, preorder_seq)
+
+
+
+
+
+
