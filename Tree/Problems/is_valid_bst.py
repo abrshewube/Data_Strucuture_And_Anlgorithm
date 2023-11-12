@@ -35,4 +35,5 @@ def is_valid_Bst(root):
             return False
          # Recursively check the left and right subtrees with updated ranges
         return(helper(node.left,min_val,node.key) and is_valid_Bst(node.right,node.key,max_value))
-    return is_valid_Bst(root)
+    return helper(root)
+
